@@ -13,8 +13,12 @@ export class HttpService {
   constructor(private _httpClient: HttpClient) {
   }
 
-  get() {
+  getAll() {
     return this._httpClient.get(this.#baseUrl);
+  }
+
+  get(id: number) {
+    return this._httpClient.get(this.#baseUrl + '/' + id);
   }
 
   post(data: User) {

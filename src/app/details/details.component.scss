@@ -1,0 +1,32 @@
+.card-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  mat-card {
+    position: relative;
+    width: 600px;
+    height: fit-content;
+    &.loading {
+      height: 400px;
+    }
+
+    height: fit-content;
+    mat-card-content {
+      padding-top: 2%;
+    }
+
+    mat-card-actions {
+      column-gap: 10px;
+    }
+
+    mat-card-footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+  }
+}

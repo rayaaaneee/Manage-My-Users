@@ -1,0 +1,45 @@
+<div class="card-container">
+  <mat-card [class]="{'loading': !loaded }">
+    @if (user) {
+      @if (!loaded) {
+        <mat-card-footer>
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </mat-card-footer>
+      } @else {
+        <mat-card-header>
+          <mat-card-title>{{ user.name }}</mat-card-title>
+          <mat-card-subtitle>Id : {{ user.id }}</mat-card-subtitle>
+          <mat-card-subtitle>Email : {{ user.email }}</mat-card-subtitle>
+          <mat-card-subtitle>Gender : {{ user.gender.charAt(0).toLocaleUpperCase()}}{{ user.gender.substring(1) }}</mat-card-subtitle>
+          <mat-card-subtitle>Phone : {{ user.phone }}</mat-card-subtitle>
+          <mat-card-subtitle>City : {{ user.city }}</mat-card-subtitle>
+            <mat-card-subtitle>Address : {{ user.streetAdress }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          Biography : {{ user.bio }}
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <a mat-button routerLink="/">Go back</a>
+          <button color='warn' mat-button>Delete</button>
+          <button color='primary' mat-button>Update</button>
+        </mat-card-actions>
+      }
+    } @else {
+      @if (!loaded) {
+        <mat-card-footer>
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </mat-card-footer>
+      } @else {
+        <mat-card-header>
+          <mat-card-title>Not found</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="display: flex; align-items: center; justify-content: center;">
+          <img width="200px" style="margin: 0 auto;" src="/assets/img/not-found.png" alt="image">
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <a mat-button routerLink="/">Go back</a>
+        </mat-card-actions>
+      }
+    }
+  </mat-card>
+</div>
