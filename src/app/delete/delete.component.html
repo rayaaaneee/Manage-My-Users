@@ -3,7 +3,7 @@
     @if (user) {
       @if (!loaded) {
         <mat-card-footer>
-          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          <mat-progress-bar color="warn" mode="indeterminate"></mat-progress-bar>
         </mat-card-footer>
       } @else {
         <mat-card-header>
@@ -11,29 +11,32 @@
           <mat-card-subtitle>Id : {{ user.id }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-          Biography : {{ user.bio }}
+          <h3 class="warning-color">Are you sure to delete this user ?</h3>
         </mat-card-content>
-        <mat-card-actions align="end">
-          <a mat-button routerLink="/">Go to list</a>
-          <a mat-button routerLink="/">Go to user</a>
-          <button color='warn' mat-button>Delete</button>
+        <mat-card-actions>
+          <button [title]="'Delete ' + user.name + ' ?'" (click)="deleteUser()" mat-mini-fab color="warn" aria-label="Example icon button with a delete icon">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <div class="back-buttons-container">
+            <a mat-button routerLink="/">Go to list</a>
+            <a mat-button [routerLink]="['/user', 'user.id']">Go to user</a>
+          </div>
         </mat-card-actions>
       }
     } @else {
       @if (!loaded) {
         <mat-card-footer>
-          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          <mat-progress-bar color="warn" mode="indeterminate"></mat-progress-bar>
         </mat-card-footer>
       } @else {
-        <mat-card-header>
-          <mat-card-title>Not found</mat-card-title>
+        <mat-card-header class="not-found">
+          <mat-card-title>User not found</mat-card-title>
         </mat-card-header>
-        <mat-card-content style="display: flex; align-items: center; justify-content: center;">
-          <img width="200px" style="margin: 0 auto;" src="/assets/img/not-found.png" alt="image">
+        <mat-card-content class="not-found">
+          <img src="/assets/img/not-found.png" alt="not found :(">
         </mat-card-content>
-        <mat-card-actions align="end">
+        <mat-card-actions class="not-found" align="end">
           <a mat-button routerLink="/">Go back to list</a>
-          <a mat-button routerLink="/">Go back to user</a>
         </mat-card-actions>
       }
     }

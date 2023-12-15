@@ -1,5 +1,5 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Component, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { User } from '../models/user.model';
 
 @Injectable({
@@ -22,14 +22,14 @@ export class HttpService {
   }
 
   post(data: User) {
-    return this._httpClient.post(this.#baseUrl + '/' + this.#baseUrl, data);
+    return this._httpClient.post(this.#baseUrl + '/' + data.id, data.toJson());
   }
 
   put(data: User) {
-    return this._httpClient.put(this.#baseUrl + '/' + this.#baseUrl + '/' + data.id, data);
+    return this._httpClient.put(this.#baseUrl + '/' + data.id, JSON.stringify(data));
   }
 
-  delete(id: number) {
-    return this._httpClient.delete(this.#baseUrl + '/' + this.#baseUrl + '/' + id);
+  delete(data: User) {
+    return this._httpClient.delete(this.#baseUrl + '/' + data.id);
   }
 }

@@ -1,16 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'font/font.scss';
 
-html, body { height: 100%; }
-
 * {
   box-sizing: border-box;
 }
 
 body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
   background-color: #efeaea;
 }
 
 .mat-mdc-form-field-subscript-wrapper.mat-mdc-form-field-bottom-align {
   display: none;
+}
+
+:root {
+  height: 100vh;
+}
+
+app-root {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  & > *:not(router-outlet) {
+    height: 100%;
+    margin: auto;
+  }
+}
+
+.warning-color {
+  color: #c2a3a3;
+}
+
+.cdk-overlay-pane {
+  mat-snack-bar-container {
+    position: fixed;
+    z-index: 1000 !important;
+    right: 0 !important;
+    top: 0 !important;
+    .mdc-button__label {
+      color: #d393cb;
+    }
+    .mdc-snackbar__surface {
+      position: fixed !important;
+      right: 0 !important;
+      top: 0 !important;
+    }
+  }
 }

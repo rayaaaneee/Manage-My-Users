@@ -47,8 +47,10 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-        <img src="assets/img/not-found.png" alt="image">
+        <td class="mat-cell" colspan="4">
+          <h3 class="warning-color">No results for <i>"{{input.value.slice(0, 12)}}{{input.value.length > 12 ? '...' : ''}}"</i></h3>
+          <img src="assets/img/not-found.png" alt="image">
+        </td>
       </tr>
     </table>
 

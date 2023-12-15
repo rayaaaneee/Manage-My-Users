@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -55,7 +55,6 @@ export class ListComponent implements OnInit, AfterViewInit {
     this._userService.users$.subscribe((users: User[]) => {
       if (users.length > 0) {
         this.loaded = true;
-        this.paginator.pageSize = 10;
         this.dataSource.data = users;
       }
     });
@@ -69,7 +68,7 @@ export class ListComponent implements OnInit, AfterViewInit {
 
   resetFilter(input: HTMLInputElement) {
     const event = new KeyboardEvent('keyup', { key: '' });
-    input.value='';
+    input.value = '';
     input.dispatchEvent(event);
   }
 

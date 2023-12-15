@@ -37,7 +37,6 @@ export class DetailsComponent implements OnInit, AfterViewInit {
     this._userService.user$.subscribe((user: User | null) => {
       if (user) {
         this.user = user;
-        console.log(this.user);
       }
     });
 
