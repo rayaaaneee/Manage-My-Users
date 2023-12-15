@@ -2,10 +2,35 @@ table {
   width: 100%;
 }
 
-.mat-mdc-form-field {
+mat-form-field {
   width: 100%;
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+    background: red;
+  }
 }
 
 [mat-stroked-button] {
   margin-left: 10px;
 }
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+tr.mat-row {
+  height: 200px;
+  td {
+    width: fit-content;
+  }
+  img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: 20px 0;
+  }
+}
+

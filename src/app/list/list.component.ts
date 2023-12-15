@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { FormsModule } from '@angular/forms';
 
@@ -25,7 +26,8 @@ import { RouterModule } from '@angular/router';
     FormsModule,
     MatButtonModule,
     MatInputModule,
-    RouterModule
+    RouterModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
@@ -34,7 +36,12 @@ import { RouterModule } from '@angular/router';
 export class ListComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['position', 'name', 'email', 'occupation', 'actions'];
   dataSource = new MatTableDataSource<User, MatPaginator>([]);
+
   search: string = '';
+
+  loaded: boolean = false;
+
+  event = new KeyboardEvent('keyup', { key: '' });
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -43,11 +50,27 @@ export class ListComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
 
-    this._userService.users$.subscribe((users: User[]) => {
-      this.dataSource.data = users;
-    });
-
     this._userService.loadAll();
+
+    this._userService.users$.subscribe((users: User[]) => {
+      if (users.length > 0) {
+        this.loaded = true;
+        this.paginator.pageSize = 10;
+        this.dataSource.data = users;
+      }
+    });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.search = filterValue.toLowerCase();
+    this.dataSource.filter = this.search;
+  }
+
+  resetFilter(input: HTMLInputElement) {
+    const event = new KeyboardEvent('keyup', { key: '' });
+    input.value='';
+    input.dispatchEvent(event);
   }
 
   ngAfterViewInit() {

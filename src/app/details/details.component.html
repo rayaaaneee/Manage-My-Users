@@ -20,8 +20,8 @@
         </mat-card-content>
         <mat-card-actions align="end">
           <a mat-button routerLink="/">Go back</a>
-          <button color='warn' mat-button>Delete</button>
-          <button color='primary' mat-button>Update</button>
+          <a color='warn' mat-button [routerLink]="['/delete', user.id ]">Delete</a>
+          <a color='primary' mat-button [routerLink]="['/update', user.id ]">Update</a>
         </mat-card-actions>
       }
     } @else {

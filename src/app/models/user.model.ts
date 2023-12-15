@@ -1,14 +1,14 @@
 export class User {
 
-    public id: number;
-    public name: string;
-    public email: string;
-    public occupation: string;
-    public streetAdress: string;
-    public city: string;
-    public bio: string;
-    public phone: string;
-    public gender: string;
+    public id!: number;
+    public name!: string;
+    public email!: string;
+    public occupation!: string;
+    public streetAdress!: string;
+    public city!: string;
+    public bio!: string;
+    public phone!: string;
+    public gender!: string;
 
     constructor(id: number, name: string, email: string, occupation: string, streetAdress: string, city: string, bio: string, phone: string, gender: string) {
       this.id = id;
