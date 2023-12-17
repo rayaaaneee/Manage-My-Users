@@ -27,7 +27,7 @@ export class UserService {
 
   public load(id: number): void {
     this._httpService.get(id).subscribe((user: any) => {
-      this.user$.next(new User(user.id, user.name, user.email, user.occupation).setOptionalInformations(user.streetAdress, user.city, user.bio, user.phone, user.gender));
+      this.user$.next(new User(user.id, user.name, user.email, user.occupation).setOptionalInformations(user.adress, user.city, user.bio, user.phone, user.gender));
     })
   }
 
@@ -45,6 +45,14 @@ export class UserService {
       if (subscription) {
         subscription(data);
       }
+    },
+    (err) => errcallback && errcallback(err));
+  }
+
+  public update(user: User, subscription?: (data: any) => void, errcallback?: (err: any) => void): void {
+    this._httpService.put(user).subscribe(
+    (data: any) => {
+      subscription && subscription(data);
     },
     (err) => errcallback && errcallback(err));
   }

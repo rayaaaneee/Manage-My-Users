@@ -37,9 +37,15 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let element">
-          <a [routerLink]="['/user', element.id]" mat-stroked-button>Details</a>
-          <a [routerLink]="['/update', element.id]" mat-stroked-button color="primary">Edit</a>
-          <a [routerLink]="['/delete', element.id]" mat-stroked-button color="warn">Delete</a>
+          <a [routerLink]="['/user', element.id]" [title]="'Details about ' + element.name" mat-icon-button>
+            <mat-icon>remove_red_eye</mat-icon>
+          </a>
+          <a color="primary" [routerLink]="['/update', element.id]" [title]="'Edit ' + element.name" mat-icon-button>
+            <mat-icon>edit</mat-icon>
+          </a>
+          <a color="warn" [title]="'Delete ' + element.name" [routerLink]="['/delete', element.id]" mat-icon-button>
+            <mat-icon>delete</mat-icon>
+          </a>
         </td>
       </ng-container>
 

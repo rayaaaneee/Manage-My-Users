@@ -55,12 +55,12 @@
       }
 
       .back-buttons-container {
-        margin-left: 20px;
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
-        align-items: end;
+        align-items: center;
         column-gap: 10px;
+        height: 100%;
       }
 
       &.not-found {

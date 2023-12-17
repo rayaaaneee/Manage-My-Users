@@ -14,12 +14,13 @@
           <h3 class="warning-color">Are you sure to delete this user ?</h3>
         </mat-card-content>
         <mat-card-actions>
-          <button [title]="'Delete ' + user.name + ' ?'" (click)="deleteUser()" mat-mini-fab color="warn" aria-label="Example icon button with a delete icon">
-            <mat-icon>delete</mat-icon>
-          </button>
           <div class="back-buttons-container">
-            <a mat-button routerLink="/">Go to list</a>
-            <a mat-button [routerLink]="['/user', 'user.id']">Go to user</a>
+            <a title="Go to user" [routerLink]="['/user', user.id]" mat-icon-button>
+              <mat-icon>arrow_back_ios</mat-icon>
+            </a>
+            <button [title]="'Delete ' + user.name" (click)="deleteUser()" mat-mini-fab color="warn" aria-label="Example icon button with a delete icon">
+              <mat-icon>delete</mat-icon>
+            </button>
           </div>
         </mat-card-actions>
       }

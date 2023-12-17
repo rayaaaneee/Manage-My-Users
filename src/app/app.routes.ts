@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 import { ListComponent } from './list/list.component';
 import { DetailsComponent } from './details/details.component';
-import { UpdateComponent } from './update/update.component';
+import { UpdateComponent } from './edit/edit.component';
 import { AddComponent } from './add/add.component';
 import { DeleteComponent } from './delete/delete.component';
 

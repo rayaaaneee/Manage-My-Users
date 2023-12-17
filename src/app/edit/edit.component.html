@@ -1,31 +1,26 @@
 <div class="card-container">
   <mat-card [class]="{'loading': !loaded }">
+    @if (user) {
       @if (!loaded) {
         <mat-card-footer>
           <mat-progress-bar mode="indeterminate"></mat-progress-bar>
         </mat-card-footer>
       } @else {
         <mat-card-header>
-          <h1>Add new user</h1>
+          <h1>Edit {{ initialUserName }}</h1>
         </mat-card-header>
         <mat-card-content>
-          <form (submit)="handleSubmitAdding($event)">
+          <form (submit)="handleSubmitEdition($event)">
             <div class="row">
               <h2 class="title-row">Main</h2>
               <div class="input-row">
                 <mat-form-field class="name-field">
                   <mat-label>Full name</mat-label>
-                  <input required="true" [formControl]="name" [(ngModel)]="user.name" name="name" type="text" matInput>
-                  @if (name.invalid) {
-                    <mat-error>{{getNameErrorMessage()}}</mat-error>
-                  }
+                  <input required="true" [(ngModel)]="user.name" name="name" type="text" matInput>
                 </mat-form-field>
                 <mat-form-field class="occupation-field">
                   <mat-label>Occupation</mat-label>
                   <input required="true" [(ngModel)]="user.occupation" name="occupation" matInput />
-                  @if (occupation.invalid) {
-                    <mat-error>{{getOccupationErrorMessage()}}</mat-error>
-                  }
                 </mat-form-field>
               </div>
             </div>
@@ -36,9 +31,6 @@
                 <mat-form-field class="email-field">
                   <mat-label>Email</mat-label>
                   <input required="true" [(ngModel)]="user.email" name="email" matInput />
-                  @if (email.invalid) {
-                    <mat-error>{{getEmailErrorMessage()}}</mat-error>
-                  }
                 </mat-form-field>
                 <mat-form-field class="phone-field">
                   <mat-label>Phone</mat-label>
@@ -82,16 +74,33 @@
               </div>
             </div>
             <div class="buttons-container">
-              <a routerLink="/" title="Back to list" mat-icon-button>
+              <a [routerLink]="['/user', user.id]" title="Back to user" mat-icon-button>
                 <mat-icon>arrow_back_ios</mat-icon>
               </a>
-              <button class="validate-button" title="Validate" type="submit" color="warn" mat-flat-button>
-                <p>Create</p>
-                <mat-icon>send</mat-icon>
+              <button class="validate-button" title="Validate" type="submit" color="primary" mat-flat-button>
+                <p>Validate</p>
+                <mat-icon>edit</mat-icon>
               </button>
             </div>
           </form>
         </mat-card-content>
       }
+    } @else {
+      @if (!loaded) {
+        <mat-card-footer>
+          <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </mat-card-footer>
+      } @else {
+        <mat-card-header>
+          <mat-card-title>Not found</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="display: flex; align-items: center; justify-content: center;">
+          <img width="200px" style="margin: 0 auto;" src="/assets/img/not-found.png" alt="image">
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <a mat-button routerLink="/">Go back</a>
+        </mat-card-actions>
+      }
+    }
   </mat-card>
 </div>

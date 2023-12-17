@@ -3,7 +3,7 @@ export interface UserInterface {
   name: string,
   email: string,
   occupation: string,
-  streetAdress?: string,
+  adress?: string,
   city?: string,
   bio?: string,
   phone?: string,
@@ -16,7 +16,7 @@ export class User {
     public name!: string;
     public email!: string;
     public occupation!: string;
-    public streetAdress?: string;
+    public adress?: string;
     public city?: string;
     public bio?: string;
     public phone?: string;
@@ -29,13 +29,23 @@ export class User {
       this.occupation = occupation;
     }
 
-    setOptionalInformations(streetAdress: string, city: string, bio: string, phone: string, gender: string): this {
-      this.streetAdress = streetAdress;
+    setOptionalInformations(adress: string, city: string, bio: string, phone: string, gender: string): this {
+      this.adress = adress;
       this.city = city;
       this.bio = bio;
       this.phone = phone;
       this.gender = gender;
       return this;
+    }
+
+    getGenderValue(): string {
+      switch(this.gender) {
+        case "male":
+          return "M";
+        case "female":
+        default:
+          return "F";
+      }
     }
 
     toJson(): UserInterface {
@@ -44,7 +54,7 @@ export class User {
         name: this.name,
         email: this.email,
         occupation: this.occupation,
-        streetAdress: this.streetAdress,
+        adress: this.adress,
         city: this.city,
         bio: this.bio,
         phone: this.phone,

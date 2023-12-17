@@ -14,15 +14,21 @@
           <mat-card-subtitle>Gender : {{ user.gender?.charAt(0)?.toLocaleUpperCase()}}{{ user.gender?.substring(1) }}</mat-card-subtitle>
           <mat-card-subtitle>Phone : {{ user.phone }}</mat-card-subtitle>
           <mat-card-subtitle>City : {{ user.city }}</mat-card-subtitle>
-            <mat-card-subtitle>Address : {{ user.streetAdress }}</mat-card-subtitle>
+            <mat-card-subtitle>Address : {{ user.adress }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
           Biography : {{ user.bio }}
         </mat-card-content>
         <mat-card-actions align="end">
-          <a mat-button routerLink="/">Go back</a>
-          <a color='warn' mat-button [routerLink]="['/delete', user.id ]">Delete</a>
-          <a color='primary' mat-button [routerLink]="['/update', user.id ]">Update</a>
+          <a title="Go to list" routerLink="/" mat-icon-button>
+            <mat-icon>arrow_back_ios</mat-icon>
+          </a>
+          <a [title]="'Edit ' + user.name" color="primary" [routerLink]="['/update', user.id]" mat-mini-fab>
+            <mat-icon>edit</mat-icon>
+          </a>
+          <a [title]="'Delete ' + user.name" color="warn" [routerLink]="['/delete', user.id]" mat-mini-fab>
+            <mat-icon>delete</mat-icon>
+          </a>
         </mat-card-actions>
       }
     } @else {

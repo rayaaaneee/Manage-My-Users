@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { User } from '../models/user.model';
 import { UserService } from '../shared/user.service';
@@ -13,7 +14,8 @@ import { UserService } from '../shared/user.service';
     MatButtonModule,
     MatCardModule,
     MatProgressBarModule,
-    RouterModule
+    RouterModule,
+    MatIconModule
   ],
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'

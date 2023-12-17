@@ -37,19 +37,9 @@ app-root {
   color: #c2a3a3;
 }
 
-.cdk-overlay-pane {
-  mat-snack-bar-container {
-    position: fixed;
-    z-index: 1000 !important;
-    right: 0 !important;
-    top: 0 !important;
-    .mdc-button__label {
-      color: #d393cb;
-    }
-    .mdc-snackbar__surface {
-      position: fixed !important;
-      right: 0 !important;
-      top: 0 !important;
-    }
+
+mat-snack-bar-container {
+  .mdc-button__label {
+    color: #d393cb;
   }
 }

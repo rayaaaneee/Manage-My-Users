@@ -21,15 +21,16 @@ export class HttpService {
     return this._httpClient.get(this.#baseUrl + '/' + id);
   }
 
-  post(data: User) {
-    return this._httpClient.post(this.#baseUrl + '/' + data.id, data.toJson());
+  delete(user: User) {
+    return this._httpClient.delete(this.#baseUrl + '/' + user.id);
   }
 
-  put(data: User) {
-    return this._httpClient.put(this.#baseUrl + '/' + data.id, JSON.stringify(data));
+  post(user: User) {
+    return this._httpClient.post(this.#baseUrl, JSON.stringify(user.toJson()));
   }
 
-  delete(data: User) {
-    return this._httpClient.delete(this.#baseUrl + '/' + data.id);
+  put(user: User) {
+    return this._httpClient.put(this.#baseUrl + '/' + user.id, JSON.stringify(user));
   }
+
 }

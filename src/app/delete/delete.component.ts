@@ -44,21 +44,28 @@ export class DeleteComponent {
     this.loaded = false;
     if (this.user) {
       this._userService.delete(this.user, (data: any) => {
-        const snackBarRef = this._snackBar.open('User' + data.name + 'succesfully deleted !', 'Undo', {
-          duration: 3000
+        const snackBarRef = this._snackBar.open('User ' + data.name + ' succesfully deleted !', 'Undo', {
+          duration: 3000,
+          horizontalPosition: "end",
+          verticalPosition: "top",
         });
         snackBarRef.onAction().subscribe(() => {
           if (this.user) {
-            this._userService.post(this.user, (data) => {
-              this._snackBar.open('User' + data.name + 'succesfully restored !', 'Close', {
-                duration: 3000
+            this._userService.post(this.user,
+              (data) => {
+                this._snackBar.open('User ' + data.name + ' succesfully restored !', 'Close', {
+                  duration: 3000,
+                  horizontalPosition: "end",
+                  verticalPosition: "top",
+                });
+              },
+              (err) => {
+                this._snackBar.open('Error while restoring user !', 'Close', {
+                  duration: 3000,
+                  horizontalPosition: "end",
+                  verticalPosition: "top",
+                });
               });
-            },
-            (err) => {
-              this._snackBar.open('Error while restoring user !', 'Close', {
-                duration: 3000
-              });
-            });
           }
         });
         this._router.navigate(['/']);
