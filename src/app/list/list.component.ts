@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 
+import { FormsModule } from '@angular/forms';
+
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,8 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
-import { FormsModule } from '@angular/forms';
+import { MatSortModule, MatSort } from '@angular/material/sort';
 
 import { User } from '../models/user.model';
 
@@ -27,14 +28,15 @@ import { RouterModule } from '@angular/router';
     MatButtonModule,
     MatInputModule,
     RouterModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSortModule
   ],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
 
 export class ListComponent implements OnInit, AfterViewInit {
-  displayedColumns: string[] = ['position', 'name', 'email', 'occupation', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'email', 'occupation', 'actions'];
   dataSource = new MatTableDataSource<User, MatPaginator>([]);
 
   search: string = '';
@@ -43,9 +45,14 @@ export class ListComponent implements OnInit, AfterViewInit {
 
   event = new KeyboardEvent('keyup', { key: '' });
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private _userService:UserService) {
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  constructor(
+    private _userService:UserService,
+  ) {
   }
 
   ngOnInit(): void {
@@ -74,5 +81,6 @@ export class ListComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 }

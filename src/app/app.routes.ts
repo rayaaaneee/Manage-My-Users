@@ -5,6 +5,7 @@ import { DetailsComponent } from './details/details.component';
 import { UpdateComponent } from './edit/edit.component';
 import { AddComponent } from './add/add.component';
 import { DeleteComponent } from './delete/delete.component';
+import { LoginComponent } from './login/login.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'users' },
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'update/:id', component: UpdateComponent },
   { path: 'delete/:id', component: DeleteComponent },
   { path: 'add', component: AddComponent },
+  { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: 'users' },
 ];

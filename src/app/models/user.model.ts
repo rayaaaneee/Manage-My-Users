@@ -1,5 +1,4 @@
 export interface UserInterface {
-  id: number,
   name: string,
   email: string,
   occupation: string,
@@ -50,7 +49,6 @@ export class User {
 
     toJson(): UserInterface {
       return {
-        id: this.id,
         name: this.name,
         email: this.email,
         occupation: this.occupation,
