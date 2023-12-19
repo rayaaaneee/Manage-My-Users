@@ -43,3 +43,11 @@ mat-snack-bar-container {
     color: #d393cb;
   }
 }
+
+.login.card-container {
+  mat-form-field {
+    .mat-mdc-text-field-wrapper {
+      background-color: transparent;
+    }
+  }
+}

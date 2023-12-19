@@ -1,0 +1,41 @@
+.card-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+
+  .main-card {
+    margin: auto;
+    width: 720px;
+    height: fit-content;
+    padding: 20px;
+
+    .grid-divider {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 10px;
+      height: 100%;
+      width: 100%;
+
+      mat-form-field {
+        width: 100%;
+      }
+
+      & > * {
+        margin: 10px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &.gap {
+          row-gap: 20px;
+
+        }
+      }
+    }
+  }
+}
+
+.main-buttons-container {
+  display: none;
+}

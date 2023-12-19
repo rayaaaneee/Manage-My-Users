@@ -1,1 +1,42 @@
-
+<div class="login card-container">
+  <mat-card class="main-card">
+    <mat-card-header>
+      <div class="grid-divider">
+        <div>
+          <mat-card-title>Login</mat-card-title>
+        </div>
+        <div>
+          <mat-card-title>Register</mat-card-title>
+        </div>
+      </div>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="grid-divider">
+        <div class="gap">
+          <mat-form-field>
+            <input matInput placeholder="Username" [(ngModel)]="loginUsername" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Password" [(ngModel)]="loginPassword" [type]="hideLoginPwd ? 'password' : 'text'" required>
+            <mat-icon matSuffix (click)="hideLoginPwd = !hideLoginPwd">{{ hideLoginPwd ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </mat-form-field>
+        </div>
+        <div class="gap">
+          <mat-form-field>
+            <input matInput placeholder="Username" [(ngModel)]="registerUsername" required>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Password" [type]="hideRegisterPwd ? 'password' : 'text'" [(ngModel)]="registerPassword" required>
+            <mat-icon matSuffix (click)="hideRegisterPwd = !hideRegisterPwd">{{hideRegisterPwd ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="grid-divider">
+        <button (click)="login()" mat-flat-button color="primary">OK</button>
+        <button (click)="register()" mat-flat-button color="warn">OK</button>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

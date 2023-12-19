@@ -1,5 +1,11 @@
-<button routerLink="/add" mat-fab color="warn" class="add-user-button" title="Add an user">
-  <mat-icon>add</mat-icon>
-</button>
+<div class="main-buttons-container" [class]="!isLoginPage ? 'show' : ''">
+  <button routerLink="/login" (click)="logout()" mat-fab color="warn" class="add-user-button" title="Disconnect">
+    <mat-icon>logout</mat-icon>
+  </button>
+  <button routerLink="/add" mat-fab color="primary" class="add-user-button" title="Add an user">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
 <router-outlet>
 </router-outlet>

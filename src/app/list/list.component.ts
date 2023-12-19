@@ -82,5 +82,30 @@ export class ListComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+
+    this.dataSource.sortingDataAccessor = (item: any, property: string) => {
+      switch (property) {
+        case 'name':
+          return item.name.toLowerCase();
+        case 'email':
+          return item.email.toLowerCase();
+        case 'occupation':
+          return item.occupation.toLowerCase();
+        default:
+          return item[property];
+      }
+    };
+    this.dataSource.filterPredicate = this.customFilterPredicate();
+  }
+
+  private customFilterPredicate() {
+    return (data: User, filter: string) => {
+      const lowerCaseFilter = filter.toLowerCase();
+      return (
+        data.name.toLowerCase().includes(lowerCaseFilter) ||
+        data.email.toLowerCase().includes(lowerCaseFilter) ||
+        data.occupation.toLowerCase().includes(lowerCaseFilter)
+      );
+    };
   }
 }

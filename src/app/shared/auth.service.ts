@@ -1,0 +1,17 @@
+import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class AuthenticationService {
+
+  readonly cookieName: string = 'isLoggedIn';
+
+  constructor(private _cookieService: CookieService) {}
+
+  isLoggedIn(): boolean {
+    return this._cookieService.check(this.cookieName);
+  }
+}
