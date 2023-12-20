@@ -106,6 +106,10 @@ export class LoginComponent {
         horizontalPosition: 'end'
       });
     } else {
+      this.accountList.push({
+        username: this.registerUsername,
+        password: this.registerPassword
+      });
 
       this._cookieService.set(this._authService.cookieName, 'true');
 

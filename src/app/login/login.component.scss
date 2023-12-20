@@ -16,20 +16,21 @@
       height: 100%;
       width: 100%;
 
-      mat-form-field {
-        width: 100%;
-      }
+      form {
+        mat-form-field {
+          width: 100%;
+        }
 
-      & > * {
-        margin: 10px auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        mat-card-content > *, & > * {
+          margin: 10px auto;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
 
-        &.gap {
-          row-gap: 20px;
-
+          &.gap {
+            row-gap: 20px;
+          }
         }
       }
     }

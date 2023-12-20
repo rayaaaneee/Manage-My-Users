@@ -37,10 +37,6 @@ import { UserService } from '../shared/user.service';
 
 export class AddComponent {
 
-  name = new FormControl('', [Validators.requiredTrue, Validators.minLength(4), Validators.maxLength(20)]);
-  occupation = new FormControl('', [Validators.requiredTrue, Validators.minLength(4), Validators.maxLength(50)]);
-  email = new FormControl('', [Validators.requiredTrue, Validators.email]);
-
   selectedGender: string = "not";
 
   loaded: boolean = true;
@@ -55,7 +51,17 @@ export class AddComponent {
   }
 
   handleSubmitAdding(e: Event): void {
-    e.preventDefault();
+
+    if (this.user.name === '' || this.user.email === '' || this.user.occupation === '') {
+      this._snackBar.open('Please fill all required fields.', 'Close',
+      {
+        duration: 3000,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+      });
+      return;
+    }
+
     this.loaded = false;
     this._userService.post(this.user,
       (user: User) => {
@@ -71,6 +77,7 @@ export class AddComponent {
 
       },
       (error: any) => {
+        console.log(error);
         this.loaded = true;
         this._snackBar.open('An error occured while adding the user.', 'Close',
         {
@@ -80,27 +87,5 @@ export class AddComponent {
         });
       }
     );
-  }
-
-  getNameErrorMessage() {
-    if (this.name.hasError('required')) {
-      return 'You must enter a value';
-    }
-    return this.name.hasError('value') ? 'Not a valid email' : '';
-  }
-
-  getOccupationErrorMessage() {
-    if (this.name.hasError('required')) {
-      return 'You must enter a value';
-    }
-    return this.name.hasError('value') ? 'Not a valid email' : '';
-  }
-
-  getEmailErrorMessage() {
-    if (this.email.hasError('required')) {
-      return 'You must enter a value';
-    }
-
-    return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 }

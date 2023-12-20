@@ -69,7 +69,17 @@ export class UpdateComponent implements OnInit, AfterViewInit {
   }
 
   handleSubmitEdition(e: Event): void {
-    e.preventDefault();
+
+    if (this.user?.name === '' || this.user?.email === '' || this.user?.occupation === '') {
+      this._snackBar.open('Please fill all required fields.', 'Close',
+      {
+        duration: 3000,
+        horizontalPosition: "end",
+        verticalPosition: "top",
+      });
+      return;
+    }
+
     this.loaded = false;
     if (this.user) {
       this._userService.update(this.user,

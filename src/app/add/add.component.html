@@ -15,17 +15,11 @@
               <div class="input-row">
                 <mat-form-field class="name-field">
                   <mat-label>Full name</mat-label>
-                  <input required="true" [formControl]="name" [(ngModel)]="user.name" name="name" type="text" matInput>
-                  @if (name.invalid) {
-                    <mat-error>{{getNameErrorMessage()}}</mat-error>
-                  }
+                  <input required="true" [(ngModel)]="user.name" name="name" type="text" matInput>
                 </mat-form-field>
                 <mat-form-field class="occupation-field">
                   <mat-label>Occupation</mat-label>
                   <input required="true" [(ngModel)]="user.occupation" name="occupation" matInput />
-                  @if (occupation.invalid) {
-                    <mat-error>{{getOccupationErrorMessage()}}</mat-error>
-                  }
                 </mat-form-field>
               </div>
             </div>
@@ -36,9 +30,6 @@
                 <mat-form-field class="email-field">
                   <mat-label>Email</mat-label>
                   <input required="true" [(ngModel)]="user.email" name="email" matInput />
-                  @if (email.invalid) {
-                    <mat-error>{{getEmailErrorMessage()}}</mat-error>
-                  }
                 </mat-form-field>
                 <mat-form-field class="phone-field">
                   <mat-label>Phone</mat-label>
