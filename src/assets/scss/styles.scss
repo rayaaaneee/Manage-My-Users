@@ -44,10 +44,12 @@ mat-snack-bar-container {
   }
 }
 
-.login.card-container {
-  mat-form-field {
-    .mat-mdc-text-field-wrapper {
-      background-color: transparent;
+.card-container {
+  &.login, &.edit, &.add {
+    mat-form-field {
+      .mat-mdc-text-field-wrapper {
+        background-color: transparent;
+      }
     }
   }
 }

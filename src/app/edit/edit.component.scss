@@ -9,11 +9,7 @@
   mat-card {
     position: relative;
     width: 800px;
-    height: fit-content;
-
-    &.loading {
-      height: 400px;
-    }
+    height: 680px;
 
     mat-card-header {
       display: flex;
@@ -35,7 +31,6 @@
       }
     }
 
-    height: fit-content;
     mat-card-content {
       padding-top: 2%;
       color: #616161;

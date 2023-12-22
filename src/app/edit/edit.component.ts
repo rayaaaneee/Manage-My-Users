@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { Title } from "@angular/platform-browser";
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -34,7 +35,7 @@ import { UserService } from '../shared/user.service';
   styleUrl: './edit.component.scss'
 })
 
-export class UpdateComponent implements OnInit, AfterViewInit {
+export class UpdateComponent implements OnInit {
 
   id: number;
 
@@ -47,8 +48,10 @@ export class UpdateComponent implements OnInit, AfterViewInit {
     private _snackBar: MatSnackBar,
     private _activatedRoute:ActivatedRoute,
     private _userService:UserService,
-    private _router:Router
+    private _router:Router,
+    private _titleService:Title
   ) {
+    this._titleService.setTitle('Loading ...');
     this.id = this._activatedRoute.snapshot.params['id'];
   }
 
@@ -56,16 +59,12 @@ export class UpdateComponent implements OnInit, AfterViewInit {
     this._userService.user$.subscribe((user: User | null) => {
       if (user) {
         this.user = user;
+        this.loaded = true;
+        this._titleService.setTitle(`Edit ${user.name} - Manage My Users`);
         this.initialUserName = user.name;
       }
     });
     this._userService.load(this.id);
-  }
-
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.loaded = true;
-    }, 600);
   }
 
   handleSubmitEdition(e: Event): void {

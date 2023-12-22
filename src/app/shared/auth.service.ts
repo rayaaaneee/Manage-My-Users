@@ -12,6 +12,14 @@ export class AuthenticationService {
   constructor(private _cookieService: CookieService) {}
 
   isLoggedIn(): boolean {
-    return this._cookieService.check(this.cookieName);
+    return (/true/).test(this._cookieService.get(this.cookieName));
+  }
+
+  login(): void {
+    this._cookieService.set(this.cookieName, 'true');
+  }
+
+  logout(): void {
+    this._cookieService.set(this.cookieName, 'false');
   }
 }

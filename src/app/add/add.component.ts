@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { FormsModule, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -46,8 +47,10 @@ export class AddComponent {
   constructor(
     private _snackBar: MatSnackBar,
     private _userService:UserService,
-    private _router:Router
+    private _router:Router,
+    private _titleService:Title
   ) {
+    this._titleService.setTitle(`Add new user - Manage My Users`);
   }
 
   handleSubmitAdding(e: Event): void {

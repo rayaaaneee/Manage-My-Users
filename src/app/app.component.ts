@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { RouterOutlet, RouterModule, Router, NavigationEnd } from '@angular/router';
@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
-import { CookieService } from 'ngx-cookie-service';
+import { AuthenticationService } from './shared/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -23,18 +23,14 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
-
-  title: string = 'angular_tp';
+export class AppComponent {
 
   isLoginPage: boolean = false;
 
   constructor(
-    private _cookieService: CookieService,
-    private _router: Router
-  ) {}
-
-  ngOnInit(): void {
+    private _router: Router,
+    private _authService: AuthenticationService
+  ) {
     this.updateIsLoginPage();
 
     // Souscrire à l'événement de navigation pour détecter les changements d'URL
@@ -50,6 +46,7 @@ export class AppComponent implements OnInit {
   }
 
   logout() {
-    this._cookieService.deleteAll();
+    this._authService.logout();
+    this._router.navigate(['/login']);
   }
 }

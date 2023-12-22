@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -23,7 +24,7 @@ import { UserService } from '../shared/user.service';
   templateUrl: './delete.component.html',
   styleUrl: './delete.component.scss'
 })
-export class DeleteComponent {
+export class DeleteComponent implements OnInit {
 
   loaded: boolean = false;
 
@@ -35,9 +36,11 @@ export class DeleteComponent {
     private _activatedRoute:ActivatedRoute,
     private _userService:UserService,
     private _snackBar: MatSnackBar,
-    private _router:Router
+    private _router:Router,
+    private _titleService:Title
   ) {
     this.id = this._activatedRoute.snapshot.params['id'];
+    this._titleService.setTitle('Loading ...');
   }
 
   deleteUser(): void {
@@ -77,15 +80,11 @@ export class DeleteComponent {
     this._userService.user$.subscribe((user: User | null) => {
       if (user) {
         this.user = user;
+        this.loaded = true;
+        this._titleService.setTitle(`Delete ${user.name} - Manage My Users`);
       }
     });
 
     this._userService.load(this.id);
-  }
-
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.loaded = true;
-    }, 600);
   }
 }

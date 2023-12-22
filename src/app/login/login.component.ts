@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import accounts from './login.data.json';
 
@@ -10,11 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { AppComponent } from '../app.component';
-
 import { Router } from '@angular/router';
 
-import { CookieService } from 'ngx-cookie-service';
 import { AuthenticationService } from '../shared/auth.service';
 
 interface Account {
@@ -53,18 +51,23 @@ export class LoginComponent {
 
   constructor(
     private _router: Router,
-    private _cookieService: CookieService,
     private _snackBar: MatSnackBar,
-    private _authService: AuthenticationService
-  ) {}
+    private _authService: AuthenticationService,
+    private _titleService:Title
+  ) {
+    this._titleService.setTitle(`Authentication - Manage My Users`);
+  }
 
-  login(): void {
+  login(e: Event): void {
+
     if (this.loginUsername === '' || this.loginPassword === '') {
       this._snackBar.open('Username or password cannot be empty', 'Close', {
         duration: 2000,
         verticalPosition: 'top',
         horizontalPosition: 'end'
       });
+      this.loginUsername = '';
+      this.loginPassword = '';
       return;
     }
 
@@ -73,7 +76,7 @@ export class LoginComponent {
     });
 
     if (account) {
-      this._cookieService.set(this._authService.cookieName, 'true');
+      this._authService.login();
       this._router.navigate(['users']);
     } else {
       this._snackBar.open('Wrong username or password', 'Close', {
@@ -82,9 +85,11 @@ export class LoginComponent {
         horizontalPosition: 'end'
       });
     }
+    this.loginUsername = '';
+    this.loginPassword = '';
   }
 
-  register(): void {
+  register(e: Event): void {
 
     if (this.registerUsername === '' || this.registerPassword === '') {
       this._snackBar.open('Username or password cannot be empty', 'Close', {
@@ -92,6 +97,8 @@ export class LoginComponent {
         verticalPosition: 'top',
         horizontalPosition: 'end'
       });
+      this.registerUsername = '';
+      this.registerPassword = '';
       return;
     }
 
@@ -111,11 +118,11 @@ export class LoginComponent {
         password: this.registerPassword
       });
 
-      this._cookieService.set(this._authService.cookieName, 'true');
+      this._authService.login();
 
       this._router.navigate(['users']);
-      this.registerUsername = '';
-      this.registerPassword = '';
     }
+    this.registerUsername = '';
+    this.registerPassword = '';
   }
 }

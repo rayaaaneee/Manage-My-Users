@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { FormsModule } from '@angular/forms';
 
@@ -45,19 +46,20 @@ export class ListComponent implements OnInit, AfterViewInit {
 
   event = new KeyboardEvent('keyup', { key: '' });
 
-
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private _userService:UserService,
+    private _titleService:Title
   ) {
+    this._titleService.setTitle(`User list - Manage My Users`);
   }
 
   ngOnInit(): void {
-
     this._userService.loadAll();
+
+    this._userService.user$.next(null);
 
     this._userService.users$.subscribe((users: User[]) => {
       if (users.length > 0) {

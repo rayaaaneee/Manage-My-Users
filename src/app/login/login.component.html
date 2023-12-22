@@ -1,7 +1,8 @@
 <div class="login card-container">
+  <img class="fixed-logo" src="assets/img/icon.png" alt="image">
   <mat-card class="main-card">
     <div class="grid-divider">
-      <form>
+      <form (submit)="login($event)">
         <mat-card-header>
             <mat-card-title>Login</mat-card-title>
         </mat-card-header>
@@ -17,10 +18,10 @@
           </div>
         </mat-card-content>
         <mat-card-actions>
-            <button type="submit" (click)="login()" mat-flat-button color="primary">OK</button>
+            <button type="submit" mat-flat-button color="primary">OK</button>
         </mat-card-actions>
       </form>
-      <form>
+      <form (submit)="register($event)">
         <mat-card-header>
           <mat-card-title>Register</mat-card-title>
         </mat-card-header>
@@ -36,7 +37,7 @@
           </div>
         </mat-card-content>
         <mat-card-actions>
-          <button type="submit" (click)="register()" mat-flat-button color="primary">OK</button>
+          <button type="submit" mat-flat-button color="primary">OK</button>
         </mat-card-actions>
       </form>
     </div>
