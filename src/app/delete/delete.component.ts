@@ -85,6 +85,8 @@ export class DeleteComponent implements OnInit {
       }
     });
 
-    this._userService.load(this.id);
+    if (!this.user) {
+      this._userService.load(this.id);
+    }
   }
 }

@@ -50,6 +50,8 @@ export class DetailsComponent implements OnInit {
       }
     });
 
-    this._userService.load(this.id);
+    if (!this.user) {
+      this._userService.load(this.id);
+    }
   }
 }

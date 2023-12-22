@@ -64,7 +64,10 @@ export class UpdateComponent implements OnInit {
         this.initialUserName = user.name;
       }
     });
-    this._userService.load(this.id);
+
+    if (!this.user) {
+      this._userService.load(this.id);
+    }
   }
 
   handleSubmitEdition(e: Event): void {
