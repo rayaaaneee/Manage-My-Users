@@ -1,6 +1,6 @@
 # Manage My Users
 
-![App icon](./src/assets/img/icon.png)
+![App icon](./src/assets/img/icon.png =100x100)
 
 ## Project
 
