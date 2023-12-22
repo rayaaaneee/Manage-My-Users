@@ -1,6 +1,6 @@
 # Manage My Users
 
-![App icon](./src/assets/img/icon.png =100x100)
+<img src="./src/assets/img/icon.png" width="100" height="100" />
 
 ## Project
 
