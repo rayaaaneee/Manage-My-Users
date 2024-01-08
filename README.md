@@ -35,6 +35,12 @@ To run the project, you need to run the following command:
 ng serve
 ```
 
+You can login with identifiers :
+- username : admin
+- password : admin
+
+Otherwise, you can register you. The registration isn't really working, accounts are saved in local memory, not in a database.
+
 Then, you can access the project on the following URL: http://localhost:4200
 
 ## Production
